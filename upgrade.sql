@@ -1,0 +1,1 @@
+ALTER TABLE t_friend ADD COLUMN `enable_wordcloud` tinyint(1) DEFAULT '0' COMMENT '是否启用词云' AFTER `enable_summary`;
