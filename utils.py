@@ -52,9 +52,9 @@ def gen_word_cloud_pic(content, gid, mode):
         return
 
     # 生成词云图片
-    _background_img = imageio.imread(template_dir + '/heart.jpeg')
-    _word_cloud = WordCloud(font_path=font_filename, background_color='white',
-                            mask=_background_img, max_font_size=600, random_state=100)
+    _background_img = imageio.imread(template_dir + '/heart2.png')
+    _word_cloud = WordCloud(font_path=font_filename, background_color='transparent',
+                            mask=_background_img, max_font_size=300, random_state=50)
     _word_cloud = _word_cloud.fit_words(
         dict(words_stat.head(100).itertuples(index=False)))
 
