@@ -48,15 +48,37 @@ def gen_word_cloud_pic(content, gid, mode):
 
     logger.success('[{}]共有 {} 个词(已去重)'.format(gid, len(words_stat)))
     # 如果没得词，跳过处理
-    if len(words_stat) == 0:
+    words_stat_len = len(words_stat)
+    if words_stat_len == 0:
         return
+
+    max_font_size = 600
+    random_state = 100
+    words_stat_head = 50
+
+    if words_stat_len >= 400:
+        max_font_size = 200
+        random_state = 30
+        words_stat_head = 400
+    elif words_stat_len >= 200:
+        max_font_size = 360
+        random_state = 60
+        words_stat_head = 200
+    elif words_stat_len >= 100:
+        max_font_size = 480
+        random_state = 80
+        words_stat_head = 100
+    elif words_stat_len >= 50:
+        max_font_size = 520
+        random_state = 100
+        words_stat_head = 50
 
     # 生成词云图片
     _background_img = imageio.imread(template_dir + '/heart.jpg')
     _word_cloud = WordCloud(font_path=font_filename, background_color='white',
-                            mask=_background_img, max_font_size=600, random_state=100)
+                            mask=_background_img, max_font_size=max_font_size, random_state=random_state)
     _word_cloud = _word_cloud.fit_words(
-        dict(words_stat.head(100).itertuples(index=False)))
+        dict(words_stat.head(words_stat_head).itertuples(index=False)))
 
     _background_img_colors = ImageColorGenerator(_background_img)
     _word_cloud.recolor(color_func=_background_img_colors)

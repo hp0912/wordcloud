@@ -104,7 +104,7 @@ def clean_temp():
     logger.success("清理完成")
 
 schedule.every().day.at("00:05").do(clean_temp)
-schedule.every().day.at("00:10").do(gen_word_cloud)
+schedule.every().day.at("00:50").do(gen_word_cloud)
 
 while True:
     schedule.run_pending()
