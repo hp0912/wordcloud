@@ -54,24 +54,7 @@ def gen_word_cloud_pic(content, gid, mode):
 
     max_font_size = 600
     random_state = 100
-    words_stat_head = 120
-
-    if words_stat_len >= 240:
-        max_font_size = 360
-        random_state = 60
-        words_stat_head = 240
-    elif words_stat_len >= 200:
-        max_font_size = 420
-        random_state = 70
-        words_stat_head = 200
-    elif words_stat_len >= 160:
-        max_font_size = 480
-        random_state = 80
-        words_stat_head = 160
-    elif words_stat_len >= 120:
-        max_font_size = 540
-        random_state = 90
-        words_stat_head = 120
+    words_stat_head = 100
 
     # 生成词云图片
     _background_img = imageio.imread(template_dir + '/heart.jpg')
