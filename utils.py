@@ -57,7 +57,7 @@ def gen_word_cloud_pic(content, gid, mode):
     words_stat_head = 100
 
     # 生成词云图片
-    _background_img = imageio.imread(template_dir + '/heart.jpg')
+    _background_img = imageio.imread(template_dir + '/chuyinweilai.jpeg')
     _word_cloud = WordCloud(font_path=font_filename, background_color='white',
                             mask=_background_img, max_font_size=max_font_size, random_state=random_state)
     _word_cloud = _word_cloud.fit_words(
