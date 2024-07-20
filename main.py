@@ -4,6 +4,7 @@ import schedule
 import pymysql
 import time
 import os
+import re
 
 from utils import gen_word_cloud_pic
 from loguru import logger
@@ -14,6 +15,8 @@ p = os.getenv("MYSQL_PASSWORD")
 # 打开数据库连接
 client = pymysql.connect(host="mysql", user=u, passwd=p, port=3306, db="wechat")
 
+# 匹配微信昵称
+pattern = r'@([^ | ]+)'
 
 # 获取微信文字聊天记录
 def get_message(_gid, _mode):
@@ -87,7 +90,11 @@ def gen_word_cloud():
 
             _msgs = ""
             for _i in _msg:
-                _msgs += _i[0] + "\n"
+                # 去掉消息体中@的昵称
+                _msg_item = re.sub(pattern, '', _i[0])
+                if not _msg_item:
+                    continue
+                _msgs += _msg_item + "\n"
             # 生成词云
             gen_word_cloud_pic(_msgs, _g[0], _mode)
 
